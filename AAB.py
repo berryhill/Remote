@@ -16,11 +16,13 @@ class AAB(ControlSurface):
 			self.session = SessionComponent(4, 4)
 			self.session.set_offsets(0, 0)
 			self.session.scene(0).clip_slot(0).set_launch_button(ButtonElement(False, 
-																1, 6, 2))
+																0, 6, 2))
 			self.session.scene(0).clip_slot(1).set_launch_button(ButtonElement(False, 
 																0, 6, 0))
 
 			self.set_highlighting_session_component(self.session)
+
+			print "Hello WOrld"
 
 			# self._send_midi((240, 126, 0, 6, 1, 247))
 
