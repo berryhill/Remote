@@ -5,6 +5,9 @@ from _Framework.ModeSelectorComponent import ModeSelectorComponent
 class SelectorComponent(ModeSelectorComponent):
 	
 	def __init__(self, matrix, shift_button):
+		raise isinstance(matrix, ButtonMatrixElement) or AssertionError
+		raise matrix.width() == 6 and matrix.height() == 1 or AssertionError
+		raise isinstance(shift_button, ButtonElement) or AssertionError
 		ModeSelectorComponent.__init__(self)
 		self._session = SessionComponent(matrix.width(), matrix.height())
 		self._matrix = matrix
