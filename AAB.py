@@ -21,8 +21,11 @@ class AAB(ControlSurface):
 		 	 	button = ButtonElement(False, 0, 0, k)
 		 	 	button_row.append(button)
 		 	matrix.add_row(button_row)
-		 	shift_button = 'shift_button'
-		 	self._selector = SelectorComponent(matrix, shift_button)
+		 	mode_buttons = []
+		 	for k in range(3):
+		 		mode_button = ButtonElement(False, 0, 1, k)
+		 		mode_buttons.append(mode_button)
+		 	self._selector = SelectorComponent(matrix, mode_buttons)
 			self._selector.name = 'Main Selector'
 			self.set_highlighting_session_component(self._selector.get_session_component())
 			self._suppress_session_highlight = False
@@ -31,4 +34,4 @@ class AAB(ControlSurface):
 	# 	self._suppress_send_midi = True
 	# 	self._selector = None
 	# 	ControlSurface.disconnect(self)
-	#   self._suppress_send_midi = False
+	#   self._suppress_send_midi = Falseggggggggggggggggggggggg
