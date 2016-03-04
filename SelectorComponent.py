@@ -11,9 +11,12 @@ class SelectorComponent(ModeSelectorComponent):
 		self._session = SessionComponent(matrix.width(), matrix.height())
 		self._matrix = matrix
 		self._mode_buttons = mode_buttons
-		self._setup_session()
+		# self.set_mode_buttons(self._mode_buttons)
+		# self._setup_session()
 
 	def disconnect(self):
+		for button in self._modes_buttons:
+			button.remove_value_listener(self._mode_value)
 		self._session = None
 		self._matrix = None
 		self._shift_button = None
@@ -23,23 +26,27 @@ class SelectorComponent(ModeSelectorComponent):
 		return self._session
 
 	def set_mode_buttons(self, buttons):
-		for button in self._mode_buttons
+		identify_sender = True
+		for button in buttons:
 			button.remove_value_listener(self._mode_value)
-		self._modes_buttons - []
+		self._mode_buttons = []
 		if buttons != None:
 			for button in buttons:
-				self._modes_buttons.append(button)
+				self._mode_buttons.append(button)
 				button.add_value_listener(self._mode_value, identify_sender)
+		self.set_mode(0)
 
 	def number_of_modes(self):
 		return 3
 
-	def set_mode(self, mode):
-		self._mode_index = (self._mode_index != mode or mode == 2) and mode
-		self.update()
+	# def set_mode(self, mode):
+	# 	self._mode_index = (self._mode_index != mode or mode == 2) and mode
+	# 	self.update()
 
 	def update(self):
-        super(MainSelectorComponent, self).update()
+		super(MainSelectorComponent, self).update()
+		if self._mode_index == 0:
+			self._setup_session()
 
 	def _setup_session(self):
 		for scene_index in range(1):
@@ -47,7 +54,3 @@ class SelectorComponent(ModeSelectorComponent):
 			for track_index in range(4):
 				button = self._matrix.get_button(track_index, scene_index)
 				scene.clip_slot(track_index).set_launch_button(button)
-
-
-	
-

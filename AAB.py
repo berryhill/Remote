@@ -12,18 +12,20 @@ class AAB(ControlSurface):
 	def __init__(self, c_instance):
 		ControlSurface.__init__(self, c_instance)
 		with self.component_guard():
+			is_momentary = True
+			is_not_momentary = False
 			self._suppress_send_midi = True
 			self._suppress_session_highlight = True
 		 	matrix = ButtonMatrixElement()
 		 	matrix.name = 'Button Matrix'
 		 	button_row = []
 		 	for k in range(4):
-		 	 	button = ButtonElement(False, 0, 0, k)
+		 	 	button = ButtonElement(is_not_momentary, 0, 0, k)
 		 	 	button_row.append(button)
 		 	matrix.add_row(button_row)
 		 	mode_buttons = []
 		 	for k in range(3):
-		 		mode_button = ButtonElement(False, 0, 1, k)
+		 		mode_button = ButtonElement(is_not_momentary, 0, 1, k)
 		 		mode_buttons.append(mode_button)
 		 	self._selector = SelectorComponent(matrix, mode_buttons)
 			self._selector.name = 'Main Selector'
@@ -34,4 +36,4 @@ class AAB(ControlSurface):
 	# 	self._suppress_send_midi = True
 	# 	self._selector = None
 	# 	ControlSurface.disconnect(self)
-	#   self._suppress_send_midi = Falseggggggggggggggggggggggg
+	#   self._suppress_send_midi = False
